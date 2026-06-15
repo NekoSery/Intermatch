@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InterMatch – Recruitment Reimagined</title>
+<link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">InterMatch</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showScreen('discover', this)">Discover</button>
+    <button class="nav-tab" onclick="showScreen('matches', this)">Matches</button>
+    <button class="nav-tab" onclick="showScreen('messages', this)">Messages</button>
+  </div>
+  <div class="nav-right">
+    <div class="nav-icon" title="Settings">⚙️</div>
+    <div class="avatar">A</div>
+  </div>
+</nav>
+
+<!-- ══ DISCOVER ══ -->
+<div id="discover" class="screen active">
+  <div class="card-mode-toggle">
+    <button class="mode-btn active" id="modeJobs" onclick="setMode('jobs')">Browse Jobs</button>
+    <button class="mode-btn" id="modeCandidates" onclick="setMode('candidates')">Browse Candidates</button>
+  </div>
+
+  <div class="swipe-stack" id="swipeStack">
+    <!-- Cards injected by JS -->
+  </div>
+
+  <div class="swipe-actions">
+    <button class="action-btn btn-pass" onclick="swipe('left')" title="Pass">✕</button>
+    <button class="action-btn btn-info" title="More info">ℹ</button>
+    <button class="action-btn btn-like" onclick="swipe('right')" title="Interested">♥</button>
+  </div>
+</div>
+
+<!-- ══ MATCHES ══ -->
+<div id="matches" class="screen">
+  <div class="page-title">Your Matches</div>
+  <div class="page-subtitle">Manage your professional connections and active conversations.</div>
+
+  <div class="section-header">
+    <div class="section-title">New Matches</div>
+    <div class="new-badge">4 New</div>
+  </div>
+  <div class="new-matches-row" id="newMatchesRow"></div>
+
+  <div class="section-header">
+    <div class="section-title">Conversations</div>
+    <div class="convo-search">🔍 Search chats...</div>
+  </div>
+  <div class="conversations" id="convoList"></div>
+</div>
+
+<!-- ══ MESSAGES ══ -->
+<div id="messages" class="screen">
+  <div class="msg-sidebar">
+    <div class="section-title" style="margin-bottom:16px">Messages</div>
+    <div id="msgSidebarList"></div>
+  </div>
+  <div class="msg-main">
+    <div class="msg-header">
+      <div class="msg-header-av">🏦</div>
+      <div>
+        <div class="msg-header-name">Marcus Chen · TechFlow</div>
+        <div class="msg-header-status">● Online</div>
+      </div>
+    </div>
+    <div class="msg-body" id="msgBody">
+      <div>
+        <div class="bubble them">Hey! We loved your portfolio. When are you free to chat about the lead role?</div>
+        <div class="bubble-time">Oct 24, 10:42 AM</div>
+      </div>
+      <div>
+        <div class="bubble me">Thanks so much! I'm available this Thursday afternoon or Friday morning.</div>
+        <div class="bubble-time">Oct 24, 11:05 AM</div>
+      </div>
+      <div>
+        <div class="bubble them">Thursday works great. I'll send over a calendar invite for 2 PM.</div>
+        <div class="bubble-time">Oct 24, 11:18 AM</div>
+      </div>
+      <div>
+        <div class="bubble me">Perfect, looking forward to it! 🙌</div>
+        <div class="bubble-time">Oct 24, 11:20 AM</div>
+      </div>
+    </div>
+    <div class="msg-input-row">
+      <input class="msg-input" id="msgInput" placeholder="Type a message..." onkeydown="handleMsgKey(event)">
+      <button class="send-btn" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MATCH MODAL ══ -->
+<div class="modal-overlay" id="matchModal">
+  <div class="match-modal">
+    <div class="match-heart">❤️</div>
+    <div class="match-avatars">
+      <div class="match-av">😊</div>
+      <div class="match-av company" id="modalCompanyIcon">🏦</div>
+    </div>
+    <div class="match-title">It's a Match!</div>
+    <div class="match-subtitle">You and <strong id="modalCompanyName">ABC Bank</strong> have expressed interest.</div>
+    <button class="btn-primary" onclick="goToMessages()">💬 Send a Message</button>
+    <button class="btn-secondary" onclick="closeModal()">Keep Swiping →</button>
+    <div class="compat-badge"><div class="compat-dot"></div><span id="modalCompat">94% Compatibility Match</span></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
